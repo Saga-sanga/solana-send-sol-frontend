@@ -1,9 +1,9 @@
 import { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
+import WalletContextProvider from '../components/WalletContextProvider'
 import { AppBar } from '../components/AppBar'
 import { SendSolForm } from '../components/SendSolForm'
 import Head from 'next/head'
-import { useState } from 'react'
 import { BalanceDisplay } from '../components/BalanceDisplay'
 
 const Home: NextPage = () => {
@@ -16,11 +16,13 @@ const Home: NextPage = () => {
           content="Wallet-Adapter Example"
         />
       </Head>
-      <AppBar />
-      <div className={styles.AppBody}>
-        <BalanceDisplay/>
-        <SendSolForm/>
-      </div>
+      <WalletContextProvider>
+        <AppBar />
+        <div className={styles.AppBody}>
+          <BalanceDisplay/>
+          <SendSolForm/>
+        </div>
+      </WalletContextProvider>
     </div>
   );
 }
